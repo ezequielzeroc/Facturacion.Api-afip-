@@ -1,0 +1,63 @@
+﻿public class BIPadron
+{
+
+
+	private string AddChecksum(int Prefix, double DNI)
+	{
+
+		string DNIStr = null;
+		int Serie = 0;
+		int I = 0;
+		int Acc = 0;
+		int Modulo = 0;
+
+		DNIStr = Prefix.ToString() + double.Parse(DNI);
+		Serie = 2;
+		Acc = 0;
+
+		for (I = DNIStr.Length - 1; I >= 0; I += -1) {
+			Acc = Acc + int.Parse(DNIStr[I]) * Serie;
+			if (Serie == 7) {
+				Serie = 2;
+			} else {
+				Serie = Serie + 1;
+			}
+		}
+		Modulo = 11 - (Acc % 11);
+		if (Modulo == 11) {
+			Modulo = 0;
+		}
+		return DNIStr + Modulo.ToString();
+	}
+
+	public ConsultaCuitResponse InternalQuery(string ACuit)
+	{
+		System.Net.WebClient webClient = new System.Net.WebClient();
+		string result = webClient.DownloadString("https://soa.afip.gob.ar/sr-padron/v2/persona/" + ACuit);
+		return new ConsultaCuitResponse(result);
+	}
+
+	public ConsultaCuitResponse ConsultaCUIT(long CUIT)
+	{
+		ConsultaCuitResponse functionReturnValue = null;
+		string CuitStr = null;
+		CuitStr = long.Parse(CUIT);
+
+		if (CuitStr.Length < 11) {
+			functionReturnValue = InternalQuery(AddChecksum(20, CUIT));
+			if (!functionReturnValue.success) {
+				functionReturnValue = InternalQuery(AddChecksum(27, CUIT));
+			}
+			if (!functionReturnValue.success) {
+				functionReturnValue = InternalQuery(AddChecksum(23, CUIT));
+			}
+			if (!functionReturnValue.success) {
+				functionReturnValue = InternalQuery(AddChecksum(24, CUIT));
+			}
+		} else {
+			functionReturnValue = InternalQuery(CuitStr);
+		}
+		return functionReturnValue;
+	}
+
+}

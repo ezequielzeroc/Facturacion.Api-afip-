@@ -1,0 +1,1830 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FEAFIPLib</name>
+    </assembly>
+    <members>
+        <member name="M:FEAFIPLib.CertificadosX509Lib.FirmaBytesMensaje(System.Byte[],System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Firma mensaje
+            </summary>
+            <param name="argBytesMsg">Bytes del mensaje</param>
+            <param name="argCertFirmante">Certificado usado para firmar</param>
+            <returns>Bytes del mensaje firmado</returns>
+            <remarks></remarks>
+        </member>
+        <member name="T:FEAFIPLib.My.Resources.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:FEAFIPLib.My.Resources.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:FEAFIPLib.My.Resources.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.dummyReturn">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.dummyReturn.appserver">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.dummyReturn.authserver">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.dummyReturn.dbserver">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.telefono">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.telefono.numero">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.telefono.numeroSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.telefono.tipoLinea">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.telefono.tipoTelefono">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.relacion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.relacion.ffRelacion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.relacion.ffRelacionSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.relacion.ffVencimiento">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.relacion.ffVencimientoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.relacion.idPersona">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.relacion.idPersonaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.relacion.idPersonaAsociada">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.relacion.idPersonaAsociadaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.relacion.subtipoRelacion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.relacion.tipoRelacion">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.regimen">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.descripcionRegimen">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.diaPeriodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.diaPeriodoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.estado">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.idImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.idImpuestoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.idRegimen">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.idRegimenSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.regimen.tipoRegimen">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.impuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.impuesto.descripcionImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.impuesto.diaPeriodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.impuesto.diaPeriodoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.impuesto.estado">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.impuesto.ffInscripcion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.impuesto.ffInscripcionSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.impuesto.idImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.impuesto.idImpuestoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.impuesto.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.impuesto.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.email">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.email.direccion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.email.estado">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.email.tipoEmail">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.domicilio">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.domicilio.codPostal">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.domicilio.datoAdicional">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.domicilio.descripcionProvincia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.domicilio.direccion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.domicilio.idProvincia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.domicilio.idProvinciaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.domicilio.localidad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.domicilio.tipoDatoAdicional">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.domicilio.tipoDomicilio">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.dependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.dependencia.descripcionDependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.dependencia.idDependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.dependencia.idDependenciaSpecified">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.categoria">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.categoria.descripcionCategoria">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.categoria.estado">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.categoria.idCategoria">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.categoria.idCategoriaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.categoria.idImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.categoria.idImpuestoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.categoria.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.categoria.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.actividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.actividad.descripcionActividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.actividad.idActividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.actividad.idActividadSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.actividad.nomenclador">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.actividad.nomencladorSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.actividad.orden">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.actividad.ordenSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.actividad.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.actividad.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.persona">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.actividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.apellido">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.cantidadSociosEmpresaMono">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.cantidadSociosEmpresaMonoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.categoria">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.claveInactivaAsociada">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.dependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.domicilio">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.email">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.estadoClave">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaContratoSocial">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaContratoSocialSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaFallecimiento">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaFallecimientoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaInscripcion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaInscripcionSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaJubilado">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaJubiladoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaNacimiento">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaNacimientoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaVencimientoMigracion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.fechaVencimientoMigracionSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.formaJuridica">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.idPersona">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.idPersonaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.impuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.leyJubilacion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.leyJubilacionSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.localidadInscripcion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.mesCierre">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.mesCierreSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.nombre">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.numeroDocumento">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.numeroInscripcion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.numeroInscripcionSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.organismoInscripcion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.organismoOriginante">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.porcentajeCapitalNacional">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.porcentajeCapitalNacionalSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.provinciaInscripcion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.razonSocial">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.regimen">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.relacion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.sexo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.telefono">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.tipoClave">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.tipoDocumento">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.tipoOrganismoOriginante">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.tipoPersona">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.persona.tipoResidencia">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.metadata">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.metadata.fechaHora">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.metadata.fechaHoraSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.metadata.servidor">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA4.personaReturn">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.personaReturn.metadata">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA4.personaReturn.persona">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.personaReturn">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.personaReturn.datosGenerales">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.personaReturn.datosMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.personaReturn.datosRegimenGeneral">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.personaReturn.errorConstancia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.personaReturn.errorMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.personaReturn.errorRegimenGeneral">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.personaReturn.metadata">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.datosGenerales">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.apellido">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.dependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.domicilioFiscal">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.estadoClave">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.fechaContratoSocial">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.fechaContratoSocialSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.idPersona">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.idPersonaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.mesCierre">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.mesCierreSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.nombre">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.razonSocial">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.tipoClave">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosGenerales.tipoPersona">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.dependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dependencia.codPostal">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dependencia.descripcionDependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dependencia.descripcionProvincia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dependencia.direccion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dependencia.idDependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dependencia.idDependenciaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dependencia.idProvincia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dependencia.idProvinciaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dependencia.localidad">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.dummyReturn">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dummyReturn.appserver">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dummyReturn.authserver">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.dummyReturn.dbserver">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.persona">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.persona.datosGenerales">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.persona.datosMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.persona.datosRegimenGeneral">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.persona.errorConstancia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.persona.errorMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.persona.errorRegimenGeneral">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.datosMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosMonotributo.actividadMonotributista">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosMonotributo.categoriaMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosMonotributo.componenteDeSociedad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosMonotributo.impuesto">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.actividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.actividad.descripcionActividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.actividad.idActividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.actividad.idActividadSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.actividad.nomenclador">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.actividad.nomencladorSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.actividad.orden">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.actividad.ordenSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.actividad.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.actividad.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.categoria">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.categoria.descripcionCategoria">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.categoria.idCategoria">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.categoria.idCategoriaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.categoria.idImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.categoria.idImpuestoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.categoria.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.categoria.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.relacion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.relacion.apellidoPersonaAsociada">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.relacion.ffRelacion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.relacion.ffRelacionSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.relacion.ffVencimiento">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.relacion.ffVencimientoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.relacion.idPersonaAsociada">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.relacion.idPersonaAsociadaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.relacion.nombrePersonaAsociada">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.relacion.razonSocialPersonaAsociada">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.relacion.tipoComponente">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.impuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.impuesto.descripcionImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.impuesto.idImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.impuesto.idImpuestoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.impuesto.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.impuesto.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.datosRegimenGeneral">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosRegimenGeneral.actividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosRegimenGeneral.categoriaAutonomo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosRegimenGeneral.impuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.datosRegimenGeneral.regimen">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.regimen">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.regimen.descripcionRegimen">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.regimen.idImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.regimen.idImpuestoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.regimen.idRegimen">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.regimen.idRegimenSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.regimen.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.regimen.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.regimen.tipoRegimen">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.errorConstancia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.errorConstancia.apellido">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.errorConstancia.error">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.errorConstancia.idPersona">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.errorConstancia.idPersonaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.errorConstancia.nombre">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.errorMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.errorMonotributo.error">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.errorMonotributo.mensaje">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.errorRegimenGeneral">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.errorRegimenGeneral.error">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.errorRegimenGeneral.mensaje">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.personaListReturn">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.personaListReturn.metadata">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.personaListReturn.persona">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.metadata">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.metadata.fechaHora">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.metadata.fechaHoraSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.metadata.servidor">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceA5.domicilio">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.domicilio.codPostal">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.domicilio.datoAdicional">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.domicilio.descripcionProvincia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.domicilio.direccion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.domicilio.idProvincia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.domicilio.idProvinciaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.domicilio.localidad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.domicilio.tipoDatoAdicional">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceA5.domicilio.tipoDomicilio">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.personaReturn">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.personaReturn.datosGenerales">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.personaReturn.datosMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.personaReturn.datosRegimenGeneral">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.personaReturn.errorConstancia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.personaReturn.errorMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.personaReturn.errorRegimenGeneral">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.personaReturn.metadata">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.apellido">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.dependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.domicilioFiscal">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.estadoClave">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.fechaContratoSocial">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.fechaContratoSocialSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.idPersona">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.idPersonaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.mesCierre">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.mesCierreSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.nombre">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.razonSocial">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.tipoClave">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosGenerales.tipoPersona">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.dependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dependencia.codPostal">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dependencia.descripcionDependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dependencia.descripcionProvincia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dependencia.direccion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dependencia.idDependencia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dependencia.idDependenciaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dependencia.idProvincia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dependencia.idProvinciaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dependencia.localidad">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.dummyReturn">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dummyReturn.appserver">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dummyReturn.authserver">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.dummyReturn.dbserver">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.metadata">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.metadata.fechaHora">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.metadata.fechaHoraSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.metadata.servidor">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.errorRegimenGeneral">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.errorRegimenGeneral.error">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.errorRegimenGeneral.mensaje">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.errorMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.errorMonotributo.error">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.errorMonotributo.mensaje">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.errorConstancia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.errorConstancia.apellido">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.errorConstancia.error">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.errorConstancia.idPersona">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.errorConstancia.idPersonaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.errorConstancia.nombre">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.regimen">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.regimen.descripcionRegimen">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.regimen.idImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.regimen.idImpuestoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.regimen.idRegimen">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.regimen.idRegimenSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.regimen.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.regimen.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.regimen.tipoRegimen">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.datosRegimenGeneral">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosRegimenGeneral.actividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosRegimenGeneral.categoriaAutonomo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosRegimenGeneral.impuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosRegimenGeneral.regimen">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.actividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.actividad.descripcionActividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.actividad.idActividad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.actividad.idActividadSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.actividad.nomenclador">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.actividad.nomencladorSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.actividad.orden">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.actividad.ordenSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.actividad.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.actividad.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.categoria">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.categoria.descripcionCategoria">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.categoria.idCategoria">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.categoria.idCategoriaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.categoria.idImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.categoria.idImpuestoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.categoria.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.categoria.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.impuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.impuesto.descripcionImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.impuesto.idImpuesto">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.impuesto.idImpuestoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.impuesto.periodo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.impuesto.periodoSpecified">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.relacion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.relacion.apellidoPersonaAsociada">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.relacion.ffRelacion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.relacion.ffRelacionSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.relacion.ffVencimiento">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.relacion.ffVencimientoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.relacion.idPersonaAsociada">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.relacion.idPersonaAsociadaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.relacion.nombrePersonaAsociada">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.relacion.razonSocialPersonaAsociada">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.relacion.tipoComponente">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.datosMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosMonotributo.actividadMonotributista">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosMonotributo.categoriaMonotributo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosMonotributo.componenteDeSociedad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.datosMonotributo.impuesto">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.ServiceConstanciaInscripcion.domicilio">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.domicilio.codPostal">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.domicilio.datoAdicional">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.domicilio.descripcionProvincia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.domicilio.direccion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.domicilio.idProvincia">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.domicilio.idProvinciaSpecified">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.domicilio.localidad">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.domicilio.tipoDatoAdicional">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.ServiceConstanciaInscripcion.domicilio.tipoDomicilio">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXAuthRequest">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXAuthRequest.Token">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXAuthRequest.Sign">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXAuthRequest.Cuit">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_CheckPermiso">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_CheckPermiso.Status">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_CheckPermiso">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_CheckPermiso.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_CheckPermiso.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_CheckPermiso.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXErr.ErrCode">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXErr.ErrMsg">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXEvents">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXEvents.EventCode">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXEvents.EventMsg">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_PtoVenta">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_PtoVenta.Pve_Nro">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_PtoVenta.Pve_Bloqueado">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_PtoVenta.Pve_FchBaja">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_PtoVenta">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_PtoVenta.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_PtoVenta.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_PtoVenta.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_LastID">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_LastID.Id">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_LastID">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_LastID.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_LastID.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_LastID.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_Ctz">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Ctz.Mon_ctz">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Ctz.Mon_fecha">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_Ctz">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Ctz.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Ctz.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Ctz.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.DummyResponse">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.DummyResponse.AppServer">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.DummyResponse.DbServer">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.DummyResponse.AuthServer">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEX_LastCMP_Response">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEX_LastCMP_Response.Cbte_nro">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEX_LastCMP_Response.Cbte_fecha">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponseLast_CMP">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponseLast_CMP.FEXResult_LastCMP">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponseLast_CMP.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponseLast_CMP.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEX_LastCMP">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEX_LastCMP.Token">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEX_LastCMP.Sign">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEX_LastCMP.Cuit">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEX_LastCMP.Pto_venta">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEX_LastCMP.Cbte_Tipo">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_Mon">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Mon.Mon_Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Mon.Mon_Ds">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Mon.Mon_vig_desde">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Mon.Mon_vig_hasta">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_Mon">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Mon.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Mon.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Mon.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_DST_cuit">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_DST_cuit.DST_CUIT">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_DST_cuit.DST_Ds">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_DST_cuit">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_DST_cuit.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_DST_cuit.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_DST_cuit.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_DST_pais">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_DST_pais.DST_Codigo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_DST_pais.DST_Ds">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_DST_pais">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_DST_pais.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_DST_pais.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_DST_pais.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_UMed">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_UMed.Umed_Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_UMed.Umed_Ds">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_UMed.Umed_vig_desde">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_UMed.Umed_vig_hasta">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_Umed">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Umed.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Umed.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Umed.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_Idi">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Idi.Idi_Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Idi.Idi_Ds">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Idi.Idi_vig_desde">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Idi.Idi_vig_hasta">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_Idi">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Idi.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Idi.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Idi.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_Inc">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Inc.Inc_Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Inc.Inc_Ds">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Inc.Inc_vig_desde">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Inc.Inc_vig_hasta">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_Inc">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Inc.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Inc.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Inc.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_Tex">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Tex.Tex_Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Tex.Tex_Ds">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Tex.Tex_vig_desde">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Tex.Tex_vig_hasta">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_Tex">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Tex.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Tex.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Tex.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXResponse_Cbte_Tipo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Cbte_Tipo.Cbte_Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Cbte_Tipo.Cbte_Ds">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Cbte_Tipo.Cbte_vig_desde">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXResponse_Cbte_Tipo.Cbte_vig_hasta">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponse_Cbte_Tipo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Cbte_Tipo.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Cbte_Tipo.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponse_Cbte_Tipo.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXGetCMPR">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Fecha_cbte">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Cbte_tipo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Punto_vta">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Cbte_nro">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Tipo_expo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Permiso_existente">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Permisos">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Dst_cmp">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Cliente">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Cuit_pais_cliente">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Domicilio_cliente">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Id_impositivo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Moneda_Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Moneda_ctz">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Obs_comerciales">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Imp_total">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Obs">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Cmps_asoc">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Forma_pago">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Incoterms">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Incoterms_Ds">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Idioma_cbte">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Items">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Fecha_cbte_cae">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Fch_venc_Cae">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Cae">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Resultado">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMPR.Motivos_Obs">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.Permiso">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Permiso.Id_permiso">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Permiso.Dst_merc">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.Cmp_asoc">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Cmp_asoc.Cbte_tipo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Cmp_asoc.Cbte_punto_vta">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Cmp_asoc.Cbte_nro">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Cmp_asoc.Cbte_cuit">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.Item">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Item.Pro_codigo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Item.Pro_ds">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Item.Pro_qty">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Item.Pro_umed">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Item.Pro_precio_uni">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Item.Pro_bonificacion">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.Item.Pro_total_item">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXGetCMPResponse">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXGetCMPResponse.FEXResultGet">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXGetCMPResponse.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXGetCMPResponse.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXGetCMP">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMP.Cbte_tipo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMP.Punto_vta">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXGetCMP.Cbte_nro">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Cuit">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Cbte_tipo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Punto_vta">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Cbte_nro">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Cae">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Fch_venc_Cae">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Fch_cbte">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Resultado">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Reproceso">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXOutAuthorize.Motivos_Obs">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.FEXResponseAuthorize">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponseAuthorize.FEXResultAuth">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponseAuthorize.FEXErr">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.FEXResponseAuthorize.FEXEvents">
+            <remarks/>
+        </member>
+        <member name="T:FEAFIPLib.wsfexv1.ClsFEXRequest">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Fecha_cbte">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Cbte_Tipo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Punto_vta">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Cbte_nro">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Tipo_expo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Permiso_existente">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Permisos">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Dst_cmp">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Cliente">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Cuit_pais_cliente">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Domicilio_cliente">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Id_impositivo">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Moneda_Id">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Moneda_ctz">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Obs_comerciales">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Imp_total">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Obs">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Cmps_asoc">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Forma_pago">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Incoterms">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Incoterms_Ds">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Idioma_cbte">
+            <remarks/>
+        </member>
+        <member name="P:FEAFIPLib.wsfexv1.ClsFEXRequest.Items">
+            <remarks/>
+        </member>
+    </members>
+</doc>
