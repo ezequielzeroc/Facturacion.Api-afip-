@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20201113212829_PosCodeToInt.Designer.cs" />
     <Compile Remove="Migrations\20201116194304_modifyTableInvoice2.cs" />
     <Compile Remove="Migrations\20201116194304_modifyTableInvoice2.Designer.cs" />
+    <Compile Remove="Migrations\20201216235759_codeCancellation.cs" />
+    <Compile Remove="Migrations\20201216235759_codeCancellation.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

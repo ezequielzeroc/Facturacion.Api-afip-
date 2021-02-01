@@ -66,6 +66,28 @@ namespace Facturacion.Data.Migrations
                     b.ToTable("BarCodes");
                 });
 
+            modelBuilder.Entity("Facturacion.Domain.CancellationLogic", b =>
+                {
+                    b.Property<int>("CancellationLogicID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("CancellationLogicID")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("CancellationCode")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("LastUpdate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("OriginalCode")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CancellationLogicID");
+
+                    b.ToTable("CancellationLogics");
+                });
+
             modelBuilder.Entity("Facturacion.Domain.Certificates", b =>
                 {
                     b.Property<int>("CertificateID")
@@ -172,6 +194,49 @@ namespace Facturacion.Data.Migrations
                     b.ToTable("CompanySettings");
                 });
 
+            modelBuilder.Entity("Facturacion.Domain.DocumentToSend", b =>
+                {
+                    b.Property<int>("DocumentToSendID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("DocumentToSendID")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("AttachInvoice")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("InvoiceID")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PriorityLevel")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Sent")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("text");
+
+                    b.Property<int>("TimesSent")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("To")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ToName")
+                        .HasColumnType("text");
+
+                    b.HasKey("DocumentToSendID");
+
+                    b.ToTable("DocumentToSend");
+                });
+
             modelBuilder.Entity("Facturacion.Domain.DocumentType", b =>
                 {
                     b.Property<int>("DocumentTypeID")
@@ -232,6 +297,63 @@ namespace Facturacion.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Downloads");
+                });
+
+            modelBuilder.Entity("Facturacion.Domain.FinancialMovementTypes", b =>
+                {
+                    b.Property<int>("MovementTypeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MovementTypeID")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("MovementTypeID");
+
+                    b.ToTable("FinancialMovementTypes");
+                });
+
+            modelBuilder.Entity("Facturacion.Domain.FinancialMovements", b =>
+                {
+                    b.Property<int>("MovementID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("MovementID")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<decimal>("Ammount")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("CompanyID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<int>("InvoiceID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TypeID")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("isCompleted")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("MovementID");
+
+                    b.HasIndex("InvoiceID");
+
+                    b.HasIndex("TypeID");
+
+                    b.ToTable("FinancialMovements");
                 });
 
             modelBuilder.Entity("Facturacion.Domain.IdentityDocumentType", b =>
@@ -371,6 +493,9 @@ namespace Facturacion.Data.Migrations
                     b.Property<string>("IdentityDocumentTypeCode")
                         .HasColumnType("text");
 
+                    b.Property<DateTime?>("InvoiceDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<int>("InvoiceNumber")
                         .HasColumnType("integer");
 
@@ -379,6 +504,9 @@ namespace Facturacion.Data.Migrations
 
                     b.Property<string>("Letter")
                         .HasColumnType("text");
+
+                    b.Property<bool>("Paid")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("PosCode")
                         .HasColumnType("integer");
@@ -608,6 +736,21 @@ namespace Facturacion.Data.Migrations
                     b.HasOne("Facturacion.Domain.Invoices", "Invoices")
                         .WithOne("Download")
                         .HasForeignKey("Facturacion.Domain.Download", "InvoiceFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Facturacion.Domain.FinancialMovements", b =>
+                {
+                    b.HasOne("Facturacion.Domain.Invoices", "Invoice")
+                        .WithMany("financialMovements")
+                        .HasForeignKey("InvoiceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Facturacion.Domain.FinancialMovementTypes", "Type")
+                        .WithMany("FinancialMovements")
+                        .HasForeignKey("TypeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -25,6 +25,11 @@ namespace Facturacion.Data
         public virtual DbSet<BarCode> BarCodes { get; set; }
         public virtual DbSet<Download> Downloads { get; set; }
         public virtual DbSet<AfipError> AfipErrors { get; set; }
+        public virtual DbSet<CancellationLogic> CancellationLogics{ get; set; }
+        public virtual DbSet<FinancialMovements> FinancialMovements { get; set; }
+        public virtual DbSet<FinancialMovementTypes> FinancialMovementTypes { get; set; }
+        public virtual DbSet<DocumentToSend> DocumentToSend { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -43,7 +48,10 @@ namespace Facturacion.Data
             modelBuilder.ApplyConfiguration(new BarCodeConfiguration());
             modelBuilder.ApplyConfiguration(new DownloadConfiguration());
             modelBuilder.ApplyConfiguration(new AfipErrorConfiguration());
-
+            modelBuilder.ApplyConfiguration(new CancellationConfiguration());
+            modelBuilder.ApplyConfiguration(new FinancialMovementsConfiguration());
+            modelBuilder.ApplyConfiguration(new FinancialMovementTypesConfiguration());
+            modelBuilder.ApplyConfiguration(new DocumentToSendConfiguration());
         }
     }
 }

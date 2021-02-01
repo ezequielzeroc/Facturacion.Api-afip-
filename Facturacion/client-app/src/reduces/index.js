@@ -6,6 +6,7 @@ import invoices from './invoices';
 import identityDocumentType from './IdentityDocumentType';
 import vatCondition from './vatCondition';
 import documentType from './documentType'
+import financialMovements from './financialMovements'
 export default combineReducers({
     auth,
     account,
@@ -14,5 +15,7 @@ export default combineReducers({
     identityDocumentType,
     vatCondition,
     documentType,
+    financialMovements
+    
 
 });

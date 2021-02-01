@@ -48,6 +48,8 @@ namespace Facturacion
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
             services.AddScoped<IPasswordHasher<Users>, PasswordHasher<Users>>();
+            services.AddScoped<IFinancialMovementsRepository, FinancialMovementsRepository>();
+            services.AddScoped<ISender, SenderRepository>();
             services.AddSingleton<TokenService>();
 
 

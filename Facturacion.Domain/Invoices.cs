@@ -13,6 +13,8 @@ namespace Facturacion.Domain
         public int CompanyID { get; set; }
         public int StoreID { get; set; }
         public int PosCode { get; set; }
+
+        public DateTime? InvoiceDate { get; set; }
         public string DocumentTypeCode { get; set; }
         public string DocumentTypeShortCode { get; set; }
         public int DocumentTypeID { get; set; }
@@ -34,6 +36,7 @@ namespace Facturacion.Domain
         public bool Printed { get; set; }
         public bool SentEmail { get; set; }
         public string CAE { get; set; }
+        public bool Paid { get; set; }
         public DateTime? CAEExpiration { get; set; }
         public DateTime? ExpirationDay { get; set; }
         public List<InvoiceItems> Items { get; set; }
@@ -41,5 +44,6 @@ namespace Facturacion.Domain
         public DocumentType DocumentType { get; set; }
         public BarCode BarCode { get; set; }
         public Download Download{ get; set; }
+        public List<FinancialMovements> financialMovements { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Facturacion.Data.Repositories
 
     public class VatConditionRepository: IVatConditionRepository
     {
-        private EasyStcokDBContext _dbContex;
+        private readonly EasyStcokDBContext _dbContex;
         public VatConditionRepository(EasyStcokDBContext dbContext)
         {
             _dbContex = dbContext;

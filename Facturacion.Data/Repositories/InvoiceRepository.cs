@@ -40,6 +40,7 @@ namespace Facturacion.Data.Repositories
             DocumentType documentType = new DocumentType();
             List<(string, decimal)> AmountTaxes = new List<(string, decimal)>();
             List<TaxesModel> lstTaxes = new List<TaxesModel>();
+            FinancialMovements movements;
             decimal CalculatedTaxes = 0;
             decimal BaseTaxable = 0;
             decimal CalculatedDiscount = 0;
@@ -59,10 +60,20 @@ namespace Facturacion.Data.Repositories
                 invoice.Letter = documentType.Letter;
                 invoice.DocumentTypeCode = documentType.Code.ToString().PadLeft(3,'0');
                 invoice.DocumentTypeShortCode = documentType.ShortName;
-
+                invoice.Created = DateTime.Now;
                 await _dbContex.AddAsync(invoice);
                 invoice.Status = Enums.InvoiceStatus.Created;
 
+                movements = new FinancialMovements
+                {
+                    Ammount = -(invoice.Total),
+                    CompanyID = invoice.CompanyID,
+                    Date = DateTime.Now,
+                    Description = "Factura creada",
+                    TypeID = 3,
+                    Invoice = invoice
+                };
+                _dbContex.Entry(movements).State = EntityState.Added;
 
                 #region Extraer impuestos y calcular descuentos
                 var GroupedTaxes = invoice.Items.GroupBy(x => x.TaxId);
@@ -89,7 +100,7 @@ namespace Facturacion.Data.Repositories
 
                         nroComprobante++;
                         wsfev1.reset();
-                        wsfev1.agregaFactura(int.Parse(invoice.ConceptCode), documentType.Code, int.Parse(invoice.IdentityDocumentNumber), nroComprobante, nroComprobante, DateTime.Parse(DateTime.Now.ToShortDateString()), Helpers.Truncate((double)invoice.Total,2), /*TotalNotTaxed*/0, Helpers.Truncate(NetAmount,2), /*OptionalExemptAmount*/ 0, null, null, null, "PES", 1);
+                        wsfev1.agregaFactura(int.Parse(invoice.ConceptCode), int.Parse(invoice.IdentityDocumentTypeCode), long.Parse(invoice.IdentityDocumentNumber), nroComprobante, nroComprobante, DateTime.Parse(DateTime.Now.ToShortDateString()), Helpers.Truncate((double)invoice.Total,2), /*TotalNotTaxed*/0, Helpers.Truncate(NetAmount,2), /*OptionalExemptAmount*/ 0, null, null, null, "PES", 1);
 
                         if (lstTaxes != null)
                         {
@@ -203,6 +214,7 @@ namespace Facturacion.Data.Repositories
             {
                 QueryInvoice = _dbContex.Invoices.AsQueryable();
                 QueryInvoice.Where(x => x.CompanyID == CompanyID);
+                
                 result = await QueryInvoice.ToListAsync();
                 
             }
@@ -447,7 +459,7 @@ namespace Facturacion.Data.Repositories
                     .SetFontSize(9)
                     .SetTextAlignment(TextAlignment.RIGHT)));
                 DetailsItems.AddCell(new Cell()
-                    .Add(new Paragraph($"$ {(item.SubTotal).ToString("N")}")
+                    .Add(new Paragraph($"$ {item.SubTotal.ToString("N")}")
                     .SetFontSize(9)
                     .SetTextAlignment(TextAlignment.RIGHT)));
             }
@@ -600,6 +612,239 @@ namespace Facturacion.Data.Repositories
                 _dbContex.Entry(invoice).State = EntityState.Deleted;
                 await _dbContex.SaveChangesAsync();
                 return true;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<InvoiceResponseModel> CancelInvoice(int CompanyID, int InvoiceID)
+        {
+            Invoices invoice = null;
+            Invoices oldInvoice = null;
+            List<InvoiceItems> newItems = null;
+            InvoiceItems newItem = null;
+
+            try
+            {
+                newItems = new List<InvoiceItems>();
+                oldInvoice = await _dbContex.Invoices.Include(x=>x.Items).FirstOrDefaultAsync(x => x.InvoiceID == InvoiceID);
+                invoice = new Invoices
+                {
+                    ClientID = oldInvoice.ClientID,
+                    ClientName = oldInvoice.ClientName,
+                    ClientAddress = oldInvoice.ClientAddress,
+                    ClientEmail = oldInvoice.ClientEmail,
+                    CompanyID = oldInvoice.CompanyID,
+                    ConceptCode = oldInvoice.ConceptCode,
+                    Subtotal = oldInvoice.Subtotal,
+                    Total = oldInvoice.Total,
+                    TotalDiscount = oldInvoice.TotalDiscount,
+                    TotalTaxes = oldInvoice.TotalTaxes,
+                    IdentityDocumentNumber = oldInvoice.IdentityDocumentNumber,
+                    IdentityDocumentTypeCode = oldInvoice.IdentityDocumentTypeCode,
+                    VatConditionCode = oldInvoice.VatConditionCode,
+
+                };
+                if (oldInvoice != null)
+                {
+                    if (oldInvoice.Items.Count > 0)
+                    {
+                        foreach (var item in oldInvoice.Items)
+                        {
+                            newItems.Add(new InvoiceItems
+                            {
+                                CalculatedDiscount = item.CalculatedDiscount,
+                                Description = item.Description,
+                                Discount = item.Discount,
+                                Price = item.Price,
+                                Qtty = item.Qtty,
+                                SubTotal = item.SubTotal,
+                                TaxCalculated = item.TaxCalculated,
+                                TaxId = item.TaxId,
+                                TaxPercent = item.TaxPercent,
+                                Total = item.Total,
+                                TotalDiscount = item.TotalDiscount,
+                                UnitOfMeasurement = item.UnitOfMeasurement
+                            });
+                        }
+                    }
+                }
+
+                invoice.Items = newItems;
+
+
+                BIWSFEV1 wsfev1;
+                List<InvoiceAuthorizationObs> _observations;
+                int nroComprobante;
+                InvoiceResponseModel response = new InvoiceResponseModel();
+                List<Taxes> taxes = null;
+                Certificates cert = null;
+                DocumentType documentType = new DocumentType();
+                DocumentType documentTypeForCancellation = new DocumentType();
+                List<(string, decimal)> AmountTaxes = new List<(string, decimal)>();
+                List<TaxesModel> lstTaxes = new List<TaxesModel>();
+                decimal CalculatedTaxes = 0;
+                decimal BaseTaxable = 0;
+                decimal CalculatedDiscount = 0;
+                double NetAmount = 0;
+                
+                CancellationLogic cancelTable = new CancellationLogic();
+                try
+                {
+                    _observations = new List<InvoiceAuthorizationObs>();
+                    cert = await _dbContex.Certificates.FirstOrDefaultAsync(x => x.CompanyID == CompanyID);
+                    wsfev1 = new BIWSFEV1();
+                    taxes = await _dbContex.Taxes.ToListAsync();
+                    documentType = await _dbContex.DocumentTypes.FirstOrDefaultAsync(x => x.DocumentTypeID == oldInvoice.DocumentTypeID);
+                    if (documentType == null)
+                        return new InvoiceResponseModel();
+
+                    cancelTable = await _dbContex.CancellationLogics.FirstOrDefaultAsync(x => x.OriginalCode == documentType.Code);
+                    documentTypeForCancellation = await _dbContex.DocumentTypes.FirstOrDefaultAsync(x => x.Code == cancelTable.CancellationCode);
+                    response = new InvoiceResponseModel();
+                    invoice.CompanyID = CompanyID;
+
+                    invoice.Letter = documentTypeForCancellation.Letter;
+                    invoice.DocumentTypeCode = documentTypeForCancellation.Code.ToString().PadLeft(3, '0');
+                    invoice.DocumentTypeShortCode = documentTypeForCancellation.ShortName;
+                    invoice.DocumentTypeID = documentTypeForCancellation.DocumentTypeID;
+
+                    await _dbContex.AddAsync(invoice);
+                    invoice.Status = Enums.InvoiceStatus.Created;
+
+
+                    #region Extraer impuestos y calcular descuentos
+                    var GroupedTaxes = oldInvoice.Items.GroupBy(x => x.TaxId);
+                    foreach (var item in GroupedTaxes)
+                    {
+                        int TaxCode = int.Parse(item.Key.ToString());
+                        Taxes Tax = taxes.FirstOrDefault(x => x.Code == TaxCode);
+                        //var TotalDiscount = item.Sum(x => x.dis);
+                        CalculatedTaxes = item.Sum(x => x.TaxCalculated);
+                        BaseTaxable = item.Sum(x => x.Price * x.Qtty);
+                        lstTaxes.Add(new TaxesModel { CalculatedTax = (double)CalculatedTaxes, TaxBase = (double)BaseTaxable, TaxID = TaxCode });
+                        AmountTaxes.Add((Tax.Name, CalculatedTaxes));
+                        CalculatedTaxes = 0;
+
+                    }
+                    NetAmount = double.Parse(lstTaxes.Sum(x => x.TaxBase).ToString("N2")); //neto gravado
+                    if (cert != null)
+                    {
+
+                        if (await wsfev1.login(cert.Path, cert.Password))
+                        {
+                            var LastInvoice = await wsfev1.recuperaLastCMPAsync(oldInvoice.PosCode, documentTypeForCancellation.Code);
+                            nroComprobante = LastInvoice.Body.FECompUltimoAutorizadoResult.CbteNro;
+
+                            nroComprobante++;
+                            wsfev1.reset();
+                            wsfev1.agregaFactura(int.Parse(invoice.ConceptCode), documentTypeForCancellation.Code, int.Parse(invoice.IdentityDocumentNumber), nroComprobante, nroComprobante, DateTime.Parse(DateTime.Now.ToShortDateString()), Helpers.Truncate((double)invoice.Total, 2), /*TotalNotTaxed*/0, Helpers.Truncate(NetAmount, 2), /*OptionalExemptAmount*/ 0, null, null, null, "PES", 1);
+                            wsfev1.agregaCbteAsoc(int.Parse(oldInvoice.DocumentTypeCode), oldInvoice.PosCode, oldInvoice.InvoiceNumber);
+                            if (lstTaxes != null)
+                            {
+                                if (lstTaxes.Count > 0)
+                                {
+                                    foreach (var tax in lstTaxes)
+                                    {
+                                        wsfev1.agregaIVA(tax.TaxID, Handlers.Helpers.Truncate(tax.TaxBase, 2), Handlers.Helpers.Truncate(tax.CalculatedTax, 2));
+                                    }
+                                }
+                            }
+
+                            var Authorizar = await wsfev1.AutorizarAsync(oldInvoice.PosCode, documentTypeForCancellation.Code);
+                            //wsfev1.autorizarRespuesta(0, ref cae, ref vencimiento, ref resultado);
+                            var respuesta = wsfev1.autorizarRespuestaV2(0);
+                            if (respuesta.Resultado == "A")
+                            {
+                                Guid id = Guid.NewGuid();
+
+                                invoice.CAE = respuesta.CAE;
+                                invoice.CAEExpiration = respuesta.VencimientoCae;
+                                response.Result = respuesta.Resultado;
+
+                                /*GENERACION DE CODIGO DE BARRA*/
+                                string FileCodeBar = $"{id}" +
+                                    $".bmp";
+                                string PathCodeBar = System.IO.Path.Combine($"C:\\Invoices\\Barcode\\{FileCodeBar}");
+                                FEAFIPLib.TBarcodeBitmap.generarCodigoBarras(long.Parse(invoice.IdentityDocumentNumber), (byte)int.Parse(invoice.DocumentTypeCode), (byte)invoice.PosCode, respuesta.CAE, respuesta.VencimientoCae, 3, 80, PathCodeBar);
+
+                                BarCode barCode = new BarCode
+                                {
+                                    Created = DateTime.Today,
+                                    Name = FileCodeBar
+                                };
+
+                                invoice.Status = Enums.InvoiceStatus.Authorized;
+                                invoice.BarCode = barCode;
+                                invoice.InvoiceNumber = nroComprobante;
+                                oldInvoice.Status = Enums.InvoiceStatus.Cancelled;
+                            }
+                            else
+                            {
+                                if (respuesta.Observaciones.Count > 0)
+                                {
+                                    foreach (var obs in respuesta.Observaciones)
+                                    {
+                                        _observations.Add(new InvoiceAuthorizationObs
+                                        {
+                                            Code = obs.Codigo,
+                                            Description = obs.Descripcion
+                                        });
+                                    }
+                                    response.Observations = _observations;
+                                }
+                            }
+
+                        }
+                    }
+
+                    #endregion
+                    string fileName = await CreatePDF(invoice, AmountTaxes);
+
+                    Download download = new Download
+                    {
+                        File = fileName,
+                        Created = DateTime.Now,
+                        Count = 0,
+                    };
+
+                    invoice.Download = download;
+
+                    await _dbContex.SaveChangesAsync();
+                    response.InvoiceID = invoice.InvoiceID;
+                    response.Created = DateTime.Now;
+                    response.CAE = invoice.CAE;
+                    response.DueDateCae = invoice.CAEExpiration?.ToShortDateString();
+                    return response;
+
+
+
+                    //let calculatedDiscount = 0;
+                    //let discountPercent = discount / 100;
+                    //let _subTotal = 0;
+                    //let _total = this.ToDecimal(0);
+
+                    //calculatedDiscount = (price * Qtty) * discountPercent;
+
+                    //_subTotal = this.ToDecimal((price * Qtty) - calculatedDiscount);
+
+
+                    //let tax = Tax.taxById(parseInt(taxId));
+                    //let taxValue = tax.Value;
+                    //let TaxCalculated = (_subTotal * taxValue) / 100;
+                    //_total = this.ToDecimal(parseFloat(_subTotal) + parseFloat(TaxCalculated));
+
+
+
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
             }
             catch (Exception e)
             {

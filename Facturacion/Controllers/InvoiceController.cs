@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Facturacion.Data.Contracts;
+using Facturacion.Data.Models.Invoices;
 using Facturacion.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -38,6 +39,7 @@ namespace Facturacion.Controllers
             try
             {
                 CompanyID = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "CompanyID").Value);
+                
                 return Ok(await _invoiceRepository.Create(CompanyID, invoice));
             }
             catch (Exception e)
@@ -46,6 +48,28 @@ namespace Facturacion.Controllers
                 return BadRequest();
             }
         }
+
+
+        [HttpPost]
+        [Authorize]
+        [Route("CancelInvoice")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CancelInvoice([FromBody] InvoiceCancelModel invoice)
+        {
+            int CompanyID = 0;
+            try
+            {
+                CompanyID = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "CompanyID").Value);
+                return Ok(await _invoiceRepository.CancelInvoice(CompanyID, invoice.InvoiceID));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error: {nameof(Create)}: {e.StackTrace}");
+                return BadRequest();
+            }
+        }
+
 
         [HttpGet]
         [Authorize]
@@ -98,6 +122,13 @@ namespace Facturacion.Controllers
             else
                 return BadRequest();
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FinalAction(Models.Invoices.FinalActionModel finalActionModel)
+        {
+            /// 
+            return Ok();
         }
     }
 }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-semantic-toasts';
-import { Container, Radio, Form, Modal, Segment, Message, Grid, Header, Icon, Select, Input, Divider, Table, Tab, Button, Confirm, TextArea, Checkbox } from 'semantic-ui-react';
+import { Container, Dimmer, Radio, Form, Modal, Segment, Message, Grid, Header, Icon, Select, Input, Divider, Table, Tab, Button, Confirm, TextArea, Checkbox, Loader } from 'semantic-ui-react';
 import { fetchDocumentType } from '../../../actions/documentType';
+import { markAsPaid } from '../../../actions/FinancialMovements';
 import { fetchIdentityDocumentType } from '../../../actions/identityDocumentType';
 import { CreateInvoice, deleteInvoice } from '../../../actions/invoices';
 import { fetchVatCondition } from '../../../actions/vatCondition';
@@ -17,6 +18,7 @@ class EditForm extends Component{
         super(props);
         this.state = {
             showMessage:false,
+            showSaveBtn:false,
             invoiceTypeOptions:[
                 {key:26,text:'Factura A',value:'FCA'},
                 {key:19,text:'Nota de débito A',value:'NDA'},
@@ -71,6 +73,7 @@ class EditForm extends Component{
             IdentityDocumentNumber:'',
             ClientAddress:'',
             ClientEmail:'',
+            Payed:false,
 
         }
         
@@ -189,6 +192,19 @@ class EditForm extends Component{
             this.setState({Lines:lAux});
     }
 
+    handleChangeToPayed = (e,{name,checked})=>{
+        this.setState({
+            [name]: checked,
+            showSaveBtn:checked
+        });
+    }
+
+    handleMarkAsPaid = (invoiceId) =>{
+        console.log("propiedades",this.props)
+        this.props.dispatch(
+            markAsPaid({invoiceId:invoiceId})
+        )
+    }
     handleChangeQtty = (e,{name,value})=>{
         let {price,taxId} = this.state;
     
@@ -233,27 +249,68 @@ class EditForm extends Component{
     handleCreateInvoice = () => {
         let { TotalDiscount, Lines,ClientName,ClientAddress,ClientEmail,IdentityDocumentTypeCode,DocumentTypeID,PosCode,ConceptCode,InvoiceDate,VatConditionCode,IdentityDocumentNumber,total,subTotalAmount,TotalTaxes } = this.state;
         let Taxes;
+        let canCreate = true;
 
-        this.props.dispatch(
-            CreateInvoice(
-                {
-                    ClientName:ClientName,
-                    ClientAddress:ClientAddress,
-                    ClientEmail:ClientEmail,
-                    PosCode:PosCode,
-                    IdentityDocumentTypeCode:IdentityDocumentTypeCode,
-                    IdentityDocumentNumber:IdentityDocumentNumber,
-                    DocumentTypeID:DocumentTypeID,
-                    ConceptCode:ConceptCode,
-                    InvoiceDate:InvoiceDate,
-                    VatConditionCode:VatConditionCode,
-                    Total: total,
-                    Subtotal:subTotalAmount,
-                    Items: Lines,
-                    TotalDiscount:TotalDiscount
-                }
-            )
-        ).then(x=>{this.setState({showMessage:true})});
+        if(Lines.length===0){
+            canCreate = false;
+            toast({
+                title:'Nueva factura',
+                description:'No hay productos/servicios a facturar',
+                type:'error'
+            });
+        }
+        if(InvoiceDate===''){
+            toast({
+                title:'Nueva factura',
+                description:'Ingrese la fecha de emisión para la factura.',
+                type:'error'
+            });
+        }
+
+        if(VatConditionCode===0){
+            canCreate = false;
+            toast({
+                title:'Nueva factura',
+                description:'Seleccione condición de IVA.',
+                type:'error'
+            });
+        }
+
+
+
+        if(IdentityDocumentNumber===''){
+            canCreate = false;
+            toast({
+                title:'Nueva factura',
+                description:'Seleccione condición de IVA.',
+                type:'error'
+            });
+        }
+
+        if(canCreate)
+        {
+            this.props.dispatch(
+                CreateInvoice(
+                    {
+                        ClientName:ClientName,
+                        ClientAddress:ClientAddress,
+                        ClientEmail:ClientEmail,
+                        PosCode:PosCode,
+                        IdentityDocumentTypeCode:IdentityDocumentTypeCode,
+                        IdentityDocumentNumber:IdentityDocumentNumber,
+                        DocumentTypeID:DocumentTypeID,
+                        ConceptCode:ConceptCode,
+                        InvoiceDate:InvoiceDate,
+                        VatConditionCode:VatConditionCode,
+                        Total: total,
+                        Subtotal:subTotalAmount,
+                        Items: Lines,
+                        TotalDiscount:TotalDiscount,
+                    }
+                )
+            ).then(x=>{this.setState({showMessage:true})});
+        }
+        
     }
     calculateTotal =()=>{
 
@@ -319,7 +376,6 @@ class EditForm extends Component{
         );
     }
     render(){
-        console.log(this.props.observations)
         let {invoiceTypeOptions,conceptsOptions,PaymentMethod, Lines,Description,Qtty, taxes, UOM,discount,subtotal,price,unitOfMeasurementID,taxId,total, TotalTaxes,subTotalAmount, PosId,
             DocumentTypeID,
             InvoiceDate,
@@ -331,27 +387,63 @@ class EditForm extends Component{
             ClientAddress,
             ClientEmail,
             showMessage,
-            TotalDiscount } = this.state;
+            TotalDiscount,
+            Payed} = this.state;
         return(
             <>
+            <Button onClick={()=>(this.setState({showMessage:true}))}></Button>
              <Modal
                 className='success'
                 open={showMessage} 
-                size='small'
+                size='mini'
                 >
                 <Modal.Header>Información de transacción</Modal.Header>
                 <Modal.Content image>
-                    {/* <Image size='medium' src='/images/avatar/large/rachel.png' wrapped /> */}
-                    <Modal.Description>
-                    <Header>CAE:  {(this.props.cae!== null? this.props.cae : 'No obtenido')} </Header>
-                    <Header>Vencimiento:  {(this.props.dueDateCae!== null? this.props.dueDateCae: 'No obtenido')} </Header>
-                    </Modal.Description>
+                <Container textAlign='center'>
+                    {
+                        this.props.result !== "" ? 
+                        <Icon name='check circle outline' color='green' size='huge'></Icon>
+                        :""
+                    }
+                    
+                    <Divider></Divider>
+                    <Table basic='very'>
+                        <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell></Table.HeaderCell>
+                            <Table.HeaderCell></Table.HeaderCell>
+                        </Table.Row>
+                        </Table.Header>
+
+                        <Table.Body>
+                        <Table.Row>
+                            <Table.Cell><b>CAE:</b></Table.Cell>
+                            <Table.Cell>{(this.props.cae!== ""? this.props.cae : 'No obtenido')}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell><b>Vencimiento:</b></Table.Cell>
+                            <Table.Cell>{(this.props.dueDateCae!== null? this.props.dueDateCae: 'No obtenido')}</Table.Cell>
+                        </Table.Row>
+
+                        </Table.Body>
+                    </Table>   
+                    <Divider></Divider>
+
+                    <Form.Group grouped >
+                        <Checkbox label='Marcar como pagada.' onClick={this.handleChangeToPayed} name='Payed'></Checkbox>
+                    </Form.Group>
+                    <Form.Group grouped >
+                        <Checkbox label='Enviar adjunto al email' onClick={this.handleChangeToPayed} name='Payed'></Checkbox>
+                    </Form.Group>
+                </Container>
+                
+                    
                 </Modal.Content>
                 <Modal.Content>
                 {
                     (this.props.observations!== null ?
                         <Message
-                        error
+                        error 
                         header='Verifique y corrija los siguientes errores.'
                         list={[this.props.observations?.map((x,i)=>(
                             x.description
@@ -361,15 +453,29 @@ class EditForm extends Component{
                 </Modal.Content>
                 <Modal.Actions>
                     
-                    <Button
-                    content="Cerrar"
-                    labelPosition='right'
-                    icon='checkmark'
-                    onClick={()=>(this.closeMessage())}
-                    positive
-                    />
+
+                    {
+                        Payed?
+                        <Button
+                        primary
+                            content="Aceptar y guardar"
+                            labelPosition='right'
+                            icon='checkmark'
+                            onClick={()=>(this.handleMarkAsPaid(this.props.invoiceId))}
+                            positive
+                        />
+                        :
+                        <Button
+                        content="Cerrar"
+                        labelPosition='right'
+                        icon='checkmark'
+                        onClick={()=>(this.closeMessage())}
+                        positive
+                        />
+                    }
                 </Modal.Actions>
                 </Modal>
+                
             <Header as='h2'>
                 <Icon name='file alternate outline' />
                     <Header.Content>
@@ -423,6 +529,7 @@ class EditForm extends Component{
                         options={this.props.vatCondition?.map((i,ix)=>({key:i.code,value:i.code,text:i.name}))}
                         label='Condición frente al IVA'
                         name='VatConditionCode'
+                        autocomplete='false'
                     />
                     <Form.Field
                         width='4'
@@ -441,6 +548,7 @@ class EditForm extends Component{
                         value={DocumentNumber}
                         name='IdentityDocumentNumber'
                         label='Nro. Documento'
+                        autoComplete='off'
                     />
                     </Form.Group>
                    <Form.Group>
@@ -451,6 +559,7 @@ class EditForm extends Component{
                         label='Apellido y nombre / Rasón social'
                         name='ClientName'
                         onChange={this.handleChange}
+                        autoComplete='off'
                     />
                     <Form.Field
                         width='5'
@@ -460,6 +569,7 @@ class EditForm extends Component{
                         name='ClientAddress'
                         placeholder=''
                         onChange={this.handleChange}
+                        autoComplete='off'
                     />
                     <Form.Field
                         width='4'
@@ -467,6 +577,7 @@ class EditForm extends Component{
                         label="Email"
                         name='ClientEmail'
                         onChange={this.handleChange}
+                        autoComplete='off'
                     />
                     </Form.Group>
                </Form>
@@ -504,7 +615,7 @@ class EditForm extends Component{
                         ))}
                         <Table.Row key='0'>
                             {/* <Table.Cell > <Form.Input fluid  /></Table.Cell> */}
-                            <Table.Cell><Form.Input name='Description'  value={Description} onChange={this.handleChange} fluid /></Table.Cell>
+                            <Table.Cell><Form.Input autoComplete='off' name='Description'  value={Description} onChange={this.handleChange} fluid /></Table.Cell>
                             <Table.Cell ><Form.Input type='number' name='Qtty' value={Qtty} onChange={this.handleChangeQtty} fluid /></Table.Cell>
                             <Table.Cell ><Form.Select fluid name='unitOfMeasurementID' value={unitOfMeasurementID} onChange={this.handleChange} options={UOM}/></Table.Cell>
                             <Table.Cell ><Form.Input fluid name='price' value={price} onChange={this.handleChangePrice} /></Table.Cell>
@@ -597,7 +708,7 @@ function mapStateToProps(state){
         cae: state.invoices.cae,
         dueDateCae: state.invoices.dueDateCae,
         result: state.invoices.result,
-        invoiceId: state.invoices.invoiceID,
+        invoiceId: state.invoices.invoiceId,
         observations: state.invoices.observations,
     }
 }
