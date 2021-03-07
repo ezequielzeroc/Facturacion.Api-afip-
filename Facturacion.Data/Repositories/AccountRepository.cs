@@ -77,7 +77,7 @@ namespace Facturacion.Data.Repositories
 
             try
             {
-                if(await Exists(ToCreate.UserName))
+                if(await Exists(ToCreate.Email))
                 {
                     return Enums.Account.Create.Account_Exists;
                 }
@@ -91,7 +91,9 @@ namespace Facturacion.Data.Repositories
                 user = new Users
                 {
                     Email = ToCreate.Email,
-                    UserName = ToCreate.UserName,
+
+                    //UserName = ToCreate.UserName,
+                    UserName = ToCreate.Email,
                     Name = ToCreate.Name,
                     LastName = ToCreate.LastName,
                     Password = _passwordHasher.HashPassword(user, ToCreate.Password),
@@ -123,7 +125,7 @@ namespace Facturacion.Data.Repositories
             Users user;
             try
             {
-                user = await _dbContex.Users.FirstOrDefaultAsync(x => x.Id == UserId);
+                user = await _dbContex.Users.FirstOrDefaultAsync(x => x.UserId == UserId);
                 if (user == null)
                 {
                     return Account.Delete.User_Not_Found;
@@ -144,13 +146,13 @@ namespace Facturacion.Data.Repositories
             }
         }
 
-        public async Task<bool> Exists(string userName)
+        public async Task<bool> Exists(string email)
         {
            
             Users user = null;
             try
             {
-                user = await _dbContex.Users.FirstOrDefaultAsync(x=>x.UserName == userName);
+                user = await _dbContex.Users.FirstOrDefaultAsync(x=>x.Email == email);
                 return user != null;
             }
             catch (Exception)
@@ -166,7 +168,7 @@ namespace Facturacion.Data.Repositories
             string _token = string.Empty;
             try
             {
-                user = await _dbContex.Users.FirstOrDefaultAsync(x => x.UserName == login.username);
+                user = await _dbContex.Users.Include(x => x.UserPermissions).ThenInclude(x=>x.Permissions).FirstOrDefaultAsync(x => x.Email == login.email);
                 return user;
             }
             catch (Exception)
@@ -181,7 +183,7 @@ namespace Facturacion.Data.Repositories
             LoginResponse response = new LoginResponse();
             var user = await _dbContex.Users
            .Include(x => x.Company)
-           .FirstOrDefaultAsync(u => u.UserName == login.username);
+           .FirstOrDefaultAsync(u => u.Email == login.email);
             try
             {
                 if (user != null)

@@ -42,7 +42,7 @@ namespace Facturacion.Services
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Name, user.Email));
             claims.Add(new Claim(ClaimTypes.Email, user.Email));
-            claims.Add(new Claim("UserId", user.Id.ToString()));
+            claims.Add(new Claim("UserId", user.UserId.ToString()));
             claims.Add(new Claim("Name", user.Name));
             claims.Add(new Claim("CompanyID", user.Company.CompanyId.ToString()));
 

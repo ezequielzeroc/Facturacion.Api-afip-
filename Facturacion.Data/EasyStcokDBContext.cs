@@ -29,6 +29,10 @@ namespace Facturacion.Data
         public virtual DbSet<FinancialMovements> FinancialMovements { get; set; }
         public virtual DbSet<FinancialMovementTypes> FinancialMovementTypes { get; set; }
         public virtual DbSet<DocumentToSend> DocumentToSend { get; set; }
+        public virtual DbSet<UserPermission> UserPermissions { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
+
+        
 
 
 
@@ -52,6 +56,7 @@ namespace Facturacion.Data
             modelBuilder.ApplyConfiguration(new FinancialMovementsConfiguration());
             modelBuilder.ApplyConfiguration(new FinancialMovementTypesConfiguration());
             modelBuilder.ApplyConfiguration(new DocumentToSendConfiguration());
+            modelBuilder.ApplyConfiguration(new UserPermissionConfiguration());
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Facturacion.Data.Configurations
         public void Configure(EntityTypeBuilder<Users> entity)
         {
             
-            entity.HasKey(x => x.Id);
-            entity.Property(e => e.Id)
-                .HasColumnName("Id")
+            entity.HasKey(x => x.UserId);
+            entity.Property(e => e.UserId)
+                .HasColumnName("UserId")
                 .ValueGeneratedOnAdd().UseIdentityColumn();
             entity.HasOne(x => x.Role)
                 .WithMany(u => u.Users)

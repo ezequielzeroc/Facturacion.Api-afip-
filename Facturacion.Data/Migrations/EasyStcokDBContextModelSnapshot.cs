@@ -547,6 +547,27 @@ namespace Facturacion.Data.Migrations
                     b.ToTable("Invoices");
                 });
 
+            modelBuilder.Entity("Facturacion.Domain.Permission", b =>
+                {
+                    b.Property<int>("PermissionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("Value")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("PermissionId");
+
+                    b.ToTable("Permissions");
+                });
+
             modelBuilder.Entity("Facturacion.Domain.Pos", b =>
                 {
                     b.Property<int>("PosId")
@@ -630,11 +651,33 @@ namespace Facturacion.Data.Migrations
                     b.ToTable("Taxes");
                 });
 
-            modelBuilder.Entity("Facturacion.Domain.Users", b =>
+            modelBuilder.Entity("Facturacion.Domain.UserPermission", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("UserPermissions");
+                });
+
+            modelBuilder.Entity("Facturacion.Domain.Users", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("UserId")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
@@ -665,7 +708,7 @@ namespace Facturacion.Data.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.HasIndex("CompanyId");
 
@@ -793,6 +836,21 @@ namespace Facturacion.Data.Migrations
                     b.HasOne("Facturacion.Domain.Company", "Company")
                         .WithMany("Pos")
                         .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Facturacion.Domain.UserPermission", b =>
+                {
+                    b.HasOne("Facturacion.Domain.Permission", "Permissions")
+                        .WithMany("UserPermissions")
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Facturacion.Domain.Users", "Users")
+                        .WithMany("UserPermissions")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -52,6 +52,7 @@ namespace Facturacion
             services.AddScoped<ISender, SenderRepository>();
             services.AddSingleton<TokenService>();
 
+            
 
             var JwtSettings = Configuration.GetSection("JwtSettings");
 
@@ -64,7 +65,7 @@ namespace Facturacion
 
                 opt.AddPolicy(name: MyAllowSpecificOrigins, policy =>
                 {
-                    policy.WithOrigins(JwtSettings.GetValue<string>("Issuer"), "http://app.inventario-facil.com", "app.inventario-facil.com", "http://inventario-facil.com", "inventario-facil.com", "http://localhost:3000", "http://192.168.0.53:3000/")
+                    policy.WithOrigins(JwtSettings.GetValue<string>("Issuer"), "http://app.inventario-facil.com", "app.inventario-facil.com", "http://inventario-facil.com", "inventario-facil.com", "http://localhost:3000", "http://192.168.0.133:3000/")
                     .AllowCredentials()
                     .AllowAnyHeader()
                     .AllowAnyMethod(); // uso esta clave porque es el emisor/origen
@@ -116,7 +117,7 @@ namespace Facturacion
             app.UseRouting();
             app.UseCors(builder =>
             {
-                builder.WithOrigins(JwtSettings.GetValue<string>("Issuer"), "http://app.inventario-facil.com", "app.inventario-facil.com", "http://inventario-facil.com", "inventario-facil.com", "http://localhost:3000", "http://192.168.0.53:3000/")
+                builder.WithOrigins(JwtSettings.GetValue<string>("Issuer"), "http://app.inventario-facil.com", "app.inventario-facil.com", "http://inventario-facil.com", "inventario-facil.com", "http://localhost:3000", "http://localhost:3000", "http://192.168.0.133:3000/")
                     .AllowCredentials()
                     .AllowAnyHeader()
                     .AllowAnyMethod()

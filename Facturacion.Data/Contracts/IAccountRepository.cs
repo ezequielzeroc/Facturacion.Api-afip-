@@ -11,7 +11,7 @@ namespace Facturacion.Data.Contracts
     {
         Task<Account.Login> ValidateLogin(LoginModel login);
         Task<Account.Create> Create(UserCreateModel ToCreate);
-        Task<bool> Exists(string userName);
+        Task<bool> Exists(string email);
         Task<Account.Delete> Delete(int UserId);
         Task<Account.ChangePassword> ChangePassword(ChangePasswordModel passwords);
         Task<Users> GetUser(LoginModel login);

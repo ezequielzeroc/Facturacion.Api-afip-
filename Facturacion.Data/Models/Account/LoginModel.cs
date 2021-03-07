@@ -7,7 +7,7 @@ namespace Facturacion.Data.Models.Account
     [Serializable]
     public class LoginModel
     {
-        public string username { get; set; }
+        public string email { get; set; }
         public string password { get; set; }
     }
 }

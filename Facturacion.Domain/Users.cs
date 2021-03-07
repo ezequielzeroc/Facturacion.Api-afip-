@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,7 +7,7 @@ namespace Facturacion.Domain
 {
     public class Users
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -18,5 +19,7 @@ namespace Facturacion.Domain
         public virtual int RoleId { get; set; }
         public virtual  Roles Role { get; set; }
         public virtual  Company Company { get; set; }
+        public virtual IEnumerable<UserPermission> UserPermissions { get; set; }
+
     }
 }

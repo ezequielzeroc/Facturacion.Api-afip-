@@ -32,6 +32,8 @@ namespace Facturacion.Controllers
         [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public async Task<IActionResult> Login([FromBody] LoginModel login) 
         {
             LoginResponse loginResponse;
@@ -43,6 +45,12 @@ namespace Facturacion.Controllers
                 {
                     case Enums.Account.Login.Success:
                         _user = await _AccountRepository.GetUser(login);
+                        if (_user == null)
+                            return Ok("Usuario no encontrado");
+
+                        if (_user.UserPermissions == null)
+                            return Ok("El usuario aún no posee permisos");
+
                         string token = _tokenService.GenerarToken(_user);
                         loginResponse = new LoginResponse
                         {
@@ -51,6 +59,12 @@ namespace Facturacion.Controllers
                             isAdmin = _user.IsSuperAdmin,
                             Status = "Ok"
                         };
+
+                        loginResponse.Permissions = new List<string>();
+                        foreach (var item in _user.UserPermissions.ToList())
+                        {
+                            loginResponse.Permissions.Add(item.Permissions.Name);    
+                        }
                         return Ok(loginResponse);
                     case Enums.Account.Login.User_Password_Error:
                         loginResponse = new LoginResponse
@@ -61,7 +75,7 @@ namespace Facturacion.Controllers
                             name = "-",
                             isAdmin = false
                         };
-                        return BadRequest(loginResponse);
+                        return NotFound(loginResponse);
 
                 }
             }
@@ -84,6 +98,8 @@ namespace Facturacion.Controllers
         {
             Enums.Account.Create ret = await _AccountRepository.Create(user);
             UserCreateResponseModel responseModel = new UserCreateResponseModel();
+            Users _user = null;
+            LoginModel login = null;
             switch (ret)
             {
                 case Enums.Account.Create.Account_Exists:
@@ -93,6 +109,24 @@ namespace Facturacion.Controllers
                 case Enums.Account.Create.Created:
                     responseModel.Message = "Usuario creado correctamente.";
                     responseModel.Status = "Ok";
+                    login = new LoginModel
+                    {
+                        email = user.UserName,
+                        password = user.Password
+                    };
+
+                    _user = await _AccountRepository.GetUser(login);
+                    if (_user != null)
+                    {
+                        string token = _tokenService.GenerarToken(_user);
+                        responseModel.token = token;
+                        responseModel.name = $"{_user.Name}, {_user.LastName}";
+                        responseModel.Permissions = new List<string>();
+                        foreach (var item in _user.UserPermissions.ToList())
+                        {
+                            responseModel.Permissions.Add(item.Permissions.Name);
+                        }
+                    }
                     break;
                 case Enums.Account.Create.Not_Created:
                     responseModel.Message = "Usuario no creado";
